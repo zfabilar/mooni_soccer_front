@@ -1,0 +1,84 @@
+<div class="py-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-6">
+        <label for="nombreEquipo">Nombre del Equipo</label><input type="text" class="form-control w-50" >
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-3">
+      <label for="nombreEquipo">Color de playera</label><input type="color" class="form-control w-50" >
+    </div>
+    <div class="col-3">
+      <label for="nombreEquipo">Representante</label>
+      <select [(ngModel)]="representante" id="division" class="form-control">
+        <option value="selecciona">Selecciona</option>
+        <!--<option class="btn " *ngFor="let division of divisiones.divisiones" value="{{division.iddivision}}">{{division.nombre}}</option>-->
+        <option value="crear" (click)="volverSeleccion('crear')"   data-toggle="modal" data-target="#modalCrearRep"> <label>Crear representante</label></option>
+      </select>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center mt-1">
+    <div class="col-3 d-flex justify-content-left">
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th>
+              Jugadores libres
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Jugador
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-1 d-flex justify-content-center">
+      <div class="row">
+        <div class="col d-flex align-items-end">
+          <button class="btn btn-info bi bi-arrow-bar-right"></button>
+        </div>
+        <div class="col d-flex align-items-start">
+          <button class="btn btn-danger bi-arrow-bar-left"></button>
+        </div>
+      </div>
+    </div>
+    <div class="col-2 d-flex justify-content-right ">
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th>
+              Jugadores a agregar
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Jugador
+            </td>
+          </tr>
+          <tr>
+            <td class="d-flex justify-content-center">
+              <button class="btn btn-success bi-person-plus-fill " data-toggle="modal" data-target="#modalCrearJug"></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center mt-4">
+    <div class="col-6 d-flex flex-row-reverse">
+      <input type="button" value="Guardar" class="btn btn-success" (click)="guardar()">
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalCrearRep">
+  <app-crear-representante-modal></app-crear-representante-modal>
+</div>
+<div class="modal fade" id="modalCrearJug">
+  <app-crear-jugador-modal></app-crear-jugador-modal>
+</div>

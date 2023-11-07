@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-12">
+    <h5>Equipos</h5>
+  </div>
+</div>
+<app-menu-equipo class="position" (newItemEvent) = "cambiaOpc($event)"></app-menu-equipo>
+
+<div class="container" [ngSwitch]="menuOption">
+  <div class="row" *ngSwitchCase="'crear-equipo'">
+    <app-crear-equipo class="w-100"></app-crear-equipo>
+  </div>
+  <div class="row" *ngSwitchCase="'ver-equipos'">
+    <app-ver-equipos class="w-100"></app-ver-equipos>
+  </div>
+</div>

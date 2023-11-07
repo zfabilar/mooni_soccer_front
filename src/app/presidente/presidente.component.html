@@ -1,0 +1,40 @@
+<div class="container">
+  <label class="col-3">Liga <strong>{{liga.nombre}}</strong></label>
+  <label class="mr-1 col-2" for="division">Selecciona la división</label>
+  <select [(ngModel)]="divisionSelected" id="division" class="h-50 btn btn-success col-3">
+    <option value="" default>Selecciona</option>
+    <option class="btn " *ngFor="let division of divisiones.divisiones" value="{{division.iddivision}}">{{division.nombre}}</option>
+  </select>
+  <label class="col-5">Temporada actual: <strong>{{temporadaActual.nombre}}</strong></label>
+</div>
+
+
+<div class="d-flex justify-content-center">
+  <app-menu-presi (newItemEvent) = "cambiaOpc($event)"></app-menu-presi>
+</div>
+
+<div class="container" [ngSwitch]="menuOption">
+  <div class="row" *ngSwitchCase="'home'">
+      Home
+  </div>
+  <div class="row" *ngSwitchCase="'equipos'">
+    <app-main class="w-100"></app-main>
+  </div>
+  <div class="row" *ngSwitchCase="'partidos'">
+    <app-main-partidos class="w-100"></app-main-partidos>
+  </div>
+  <div class="row" *ngSwitchCase="'jornada'">
+    Jornada
+  </div>
+  <div class="row" *ngSwitchCase="'divisiones'">
+    divisiones
+  </div>
+  <div class="row" *ngSwitchCase="'temporada'">
+    temporada
+  </div>
+  <div class="row" *ngSwitchCase="'arbitros'">
+    arbitros
+  </div>
+</div>
+
+<app-luna *ngIf="espera"></app-luna>

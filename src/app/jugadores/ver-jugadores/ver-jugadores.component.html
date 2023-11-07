@@ -1,0 +1,41 @@
+
+<div class="py-1">
+  <div class="row">
+      <div class="col-lg-12 mx-auto bg-white rounded shadow">
+
+          <!-- Fixed header table-->
+          <div class="table-responsive">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th scope="col" class="col-4">
+                            Nombre
+                          </th>
+                          <th scope="col" class="col-4">
+                            # Playera
+                          </th>
+                          <th scope="col" class="col-4">
+                            Acciones
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <th scope="row" class="col-4">Raul Camacho</th>
+                          <td class="col-4">7</td>
+                          <td class="col-4"><button class="btn btn-success bi bi-pencil-square"></button><button class="btn btn-danger bi bi-clipboard-x"></button></td>
+                      </tr>
+                      <tr>
+                        <td class="d-flex justify-content-center" colspan=3>
+                          <button class="btn btn-success bi-person-plus-fill " data-toggle="modal" data-target="#myModal1"></button>
+                        </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="modal fade" id="myModal1">
+  <app-crear-jugador-modal></app-crear-jugador-modal>
+</div>

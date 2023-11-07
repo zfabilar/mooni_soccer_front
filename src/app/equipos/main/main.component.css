@@ -1,0 +1,12 @@
+.position{
+  float: none;
+content: '';
+float: left;
+width: 15px;
+height: 15px;
+border-radius: 15px;
+background-color: #FEFEFE;
+z-index: -2;
+left: 50%;
+box-sizing: content-box;
+}
