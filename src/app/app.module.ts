@@ -35,6 +35,21 @@ import { CrearEquipoModalComponent } from './modales/crear-equipo-modal/crear-eq
 import { CrearPartidoModalComponent } from './modales/crear-partido-modal/crear-partido-modal.component';
 import { CedulaComponent } from './partidos/cedula/cedula.component';
 import { CedulaModalComponent } from './modales/cedula-modal/cedula-modal.component';
+import { MenuDivisionesComponent } from './divisiones/menu-divisiones/menu-divisiones.component';
+import { MainDivisionesComponent } from './divisiones/main-divisiones/main-divisiones.component';
+import { VerDivisionesComponent } from './divisiones/ver-divisiones/ver-divisiones.component';
+import { CrearDivisionModalComponent } from './modales/crear-division-modal/crear-division-modal.component';
+import { VerEquiposModalComponent } from './modales/ver-equipos-modal/ver-equipos-modal.component';
+import { MainArbitrosComponent } from './arbitros/main-arbitros/main-arbitros.component';
+import { MenuArbitrosComponent } from './arbitros/menu-arbitros/menu-arbitros.component';
+import { VerArbitrosComponent } from './arbitros/ver-arbitros/ver-arbitros.component';
+import { CrearArbitroModalComponent } from './modales/crear-arbitro-modal/crear-arbitro-modal.component';
+import { CrearTemporadaComponent } from './temporadas/crear-temporada/crear-temporada.component';
+import { TerminaTemporadaComponent } from './modales/termina-temporada/termina-temporada.component';
+import { VerRepresentantesComponent } from './representante/ver-representantes/ver-representantes.component';
+import { SelectDivisionComponent } from './modales/select-division/select-division.component';
+import { CerrarSesionComponent } from './modales/cerrar-sesion/cerrar-sesion.component';
+import { InformacionModalComponent } from './modales/informacion-modal/informacion-modal.component';
 
 
 @NgModule({
@@ -70,7 +85,22 @@ import { CedulaModalComponent } from './modales/cedula-modal/cedula-modal.compon
     CrearEquipoModalComponent,
     CrearPartidoModalComponent,
     CedulaComponent,
-    CedulaModalComponent
+    CedulaModalComponent,
+    MenuDivisionesComponent,
+    MainDivisionesComponent,
+    VerDivisionesComponent,
+    CrearDivisionModalComponent,
+    VerEquiposModalComponent,
+    MainArbitrosComponent,
+    MenuArbitrosComponent,
+    VerArbitrosComponent,
+    CrearArbitroModalComponent,
+    CrearTemporadaComponent,
+    TerminaTemporadaComponent,
+    VerRepresentantesComponent,
+    SelectDivisionComponent,
+    CerrarSesionComponent,
+    InformacionModalComponent
   ],
   imports: [
     BrowserModule,

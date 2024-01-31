@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output,EventEmitter,Input } from '@angular/core';
 
 @Component({
   selector: 'app-crear-jugador-modal',
@@ -11,5 +11,10 @@ export class CrearJugadorModalComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  @Output() cerrarModalEv = new EventEmitter<boolean>();
+  cerrarModal(){
+    this.cerrarModalEv.emit(true);
+    ($("#modalCrearJug") as any).modal('hide')
+  }
+  @Input() idTeam:number|null = 0
 }

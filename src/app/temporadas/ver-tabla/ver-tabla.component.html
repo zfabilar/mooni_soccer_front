@@ -1,1 +1,72 @@
-<p>ver-tabla works!</p>
+<div class="row">
+  <div class="col-12">
+    <h1>Tabla General</h1>
+  </div>
+</div>
+<div class="row mt-1">
+  <div class="col-12">
+    <table class="table table-responsive w-100 table-wrapper-scroll-y my-custom-scrollbar">
+      <thead>
+        <th class="col-1">
+          Pos
+        </th>
+        <th class="col-3">
+          Equipo
+        </th>
+        <th>
+          Jugados
+        </th>
+        <th class="col-1">
+          JG
+        </th>
+        <th class="col-1">
+          JP
+        </th>
+        <th class="col-1">
+          GF
+        </th>
+        <th class="col-1">
+          GC
+        </th>
+        <th class="col-1">
+          Dif
+        </th>
+        <th class="col-1">
+          Puntos
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of listaEstadisticas ; index as i" style="color:{{e.equipo.colorplayera}}">
+          <th>
+            {{i+1}}
+          </th>
+          <th>
+            {{e.equipo.nombre}}
+          </th>
+          <th>
+            {{e.jj}}
+          </th>
+          <th>
+            {{e.estadistic.partidosganados}}
+          </th>
+          <th>
+            {{e.estadistic.partidosperdidos}}
+          </th>
+          <th>
+            {{e.estadistic.golesfavor}}
+          </th>
+          <th>
+            {{e.estadistic.golescontra}}
+          </th>
+          <th>
+            {{e.dif}}
+          </th>
+          <th>
+            {{e.estadistic.puntos}}
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-luna *ngIf="espera"></app-luna>

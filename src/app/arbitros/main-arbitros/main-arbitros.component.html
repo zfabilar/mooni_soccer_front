@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-12">
+    <h5>Arbitros</h5>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-3">
+    <app-menu-arbitros class="position" (newItemEvent) = "cambiaOpc($event)"></app-menu-arbitros>
+  </div>
+  <div class="col-9">
+    <div class="container" [ngSwitch]="menuOption">
+      <div class="row" *ngSwitchCase="'crear-arbitro'">
+        <app-crear-arbitros class="w-100"  (messageEvent) = "sendMessageInfo($event)" (esperaEvent)="esperaChange($event)"></app-crear-arbitros>
+      </div>
+      <div class="row" *ngSwitchCase="'ver-arbitros'">
+        <app-ver-arbitros class="w-100" (arbiEvent)="updateArbi($event)" (messageEvent) = "sendMessageInfo($event)" (esperaEvent)="esperaChange($event)"></app-ver-arbitros>
+      </div>
+    </div>
+  </div>
+</div>

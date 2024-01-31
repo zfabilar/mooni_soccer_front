@@ -1,0 +1,34 @@
+<div class="row mt-2">
+  <div class="col-lg-12 mx-auto bg-white rounded shadow table-wrapper-scroll-y my-custom-scrollbar">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="col-2">
+                      Nombre
+                    </th>
+                    <th scope="col" class="col-2">
+                      Telefono
+                    </th>
+                    <th scope="col" class="col-3">
+                      Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let arb of listaArbitros">
+                    <td class="col-2">{{arb.nombre}}</td>
+                    <td class="col-2">
+                      {{arb.telefono}}
+                    </td>
+                    <td class="col-3">
+                        <button class="btn btn-success bi bi-pencil-square border-0 h-100" data-toggle="modal" data-target="#modalCA" (click)="modalCA(arb.idarbitro)"></button>
+                        <button class="btn btn-danger bi-trash3 border-0" (click)="eliminaArbitro(arb.idarbitro)"></button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>

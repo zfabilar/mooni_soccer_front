@@ -3,8 +3,9 @@
   <a  (click)="cambiaOpc('equipos')">Equipos</a>
   <a  (click)="cambiaOpc('partidos')">Partidos</a>
   <a  (click)="cambiaOpc('divisiones')">Divisiones</a>
-  <a  (click)="cambiaOpc('temporada')">Temporada</a>
   <a  (click)="cambiaOpc('arbitros')">Arbitros</a>
-  <a  (click)="cierraSes()">Cerrar Sesión</a>
+  <a   data-toggle="modal" data-target="#modalSC">Cerrar Sesión</a>
 </div>
-
+<div class="modal fade" id="modalSC">
+  <app-cerrar-sesion></app-cerrar-sesion>
+</div>

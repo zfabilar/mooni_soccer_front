@@ -1,1 +1,20 @@
-<p>crear-jornada works!</p>
+<div class="row mt-4">
+  <div class="col-3">
+    <label for="">Jornada</label>
+  </div>
+  <div class=" col-3">
+    <input type="text" class="form-control" [(ngModel)]="nombre">
+  </div>
+  <div class="col-6"><label for=""*ngIf="error" class="text-danger">Los campos son obligatorios</label></div>
+  <div class="col-6">
+    <label for="">Fecha inicio</label>
+    <input type="date" name="" id="" class="form-control" [(ngModel)]="fechaInicio">
+  </div>
+  <div class="col-6">
+    <label for="">Fecha fin</label>
+    <input type="date" name="" id="" class="form-control" [(ngModel)]="fechaFin">
+  </div>
+  <div class="col-12 d-flex justify-content-end mt-2">
+    <button class="form-control btn btn-success w-25" (click)="crearJornada()">Crear</button>
+  </div>
+</div>

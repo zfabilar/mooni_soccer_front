@@ -9,10 +9,11 @@ export class DivisionService {
 
   constructor(private http: HttpClient) { }
 
-  obtieneDivisiones(idLiga:number,idSesion:number){
+  obtieneDivisiones(idLiga:number){
+    var sesion = (typeof localStorage.getItem("sesion") == null) ? '0':localStorage.getItem("sesion")?.valueOf()
     return this.http.post<Division>(constantes.URL_API+'division/ByLiga',{
         "idLiga" : idLiga,
-        "idsesion":idSesion
+        "idsesion":parseInt( sesion == undefined ? '0':sesion)
       }
     );
   }

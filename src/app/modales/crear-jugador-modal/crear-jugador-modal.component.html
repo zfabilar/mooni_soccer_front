@@ -10,12 +10,12 @@
 
     <!-- Modal body -->
     <div class="modal-body">
-      <app-crear-jugador></app-crear-jugador>
+      <app-crear-jugador [idTeam]="idTeam"></app-crear-jugador>
     </div>
 
     <!-- Modal footer -->
     <div class="modal-footer">
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-danger"  (click)="cerrarModal()">Close</button>
     </div>
 
   </div>

@@ -1,9 +1,9 @@
 <div class="container">
   <label class="col-3">Liga <strong>{{liga.nombre}}</strong></label>
   <label class="mr-1 col-2" for="division">Selecciona la división</label>
-  <select [(ngModel)]="divisionSelected" id="division" class="h-50 btn btn-success col-3">
-    <option value="" default>Selecciona</option>
-    <option class="btn " *ngFor="let division of divisiones.divisiones" value="{{division.iddivision}}">{{division.nombre}}</option>
+  <select [(ngModel)]="divisionSelected" id="division" class="h-50 btn btn-success col-3" (change)="actualizaDivision()">
+    <option value=0 default>Selecciona</option>
+    <option class="btn " *ngFor="let division of divisiones.divisiones" value={{division.iddivision}}>{{division.nombre}}</option>
   </select>
   <label class="col-5">Temporada actual: <strong>{{temporadaActual.nombre}}</strong></label>
 </div>
@@ -15,26 +15,42 @@
 
 <div class="container" [ngSwitch]="menuOption">
   <div class="row" *ngSwitchCase="'home'">
-      Home
+      <app-main-home class="w-100" (messageEvent)="receiveMessage($event)" (esperaEvent)="esperaChange($event)" (repEvent)="setRepresentante($event)" [division]="divisionSelected"></app-main-home>
   </div>
   <div class="row" *ngSwitchCase="'equipos'">
-    <app-main class="w-100"></app-main>
+    <app-main class="w-100" (messageEvent)="receiveMessage($event)" (esperaEvent)="esperaChange($event)" (teamEvent)="setEquipo($event)" [division]="divisionSelected"></app-main>
   </div>
   <div class="row" *ngSwitchCase="'partidos'">
-    <app-main-partidos class="w-100"></app-main-partidos>
-  </div>
-  <div class="row" *ngSwitchCase="'jornada'">
-    Jornada
+    <app-main-partidos class="w-100" (messageEvent)="receiveMessage($event)" (esperaEvent)="esperaChange($event)" [division]="divisionSelected"></app-main-partidos>
   </div>
   <div class="row" *ngSwitchCase="'divisiones'">
-    divisiones
-  </div>
-  <div class="row" *ngSwitchCase="'temporada'">
-    temporada
+    <app-main-divisiones class="w-100" (messageEvent)="receiveMessage($event)" (esperaEvent)="esperaChange($event)"></app-main-divisiones>
   </div>
   <div class="row" *ngSwitchCase="'arbitros'">
-    arbitros
+    <app-main-arbitros class="w-100" (arbiEvent)="setArbitro($event)" (messageEvent)="receiveMessage($event)" (esperaEvent)="esperaChange($event)"></app-main-arbitros>
   </div>
 </div>
 
 <app-luna *ngIf="espera"></app-luna>
+
+<div class="modal fade" id="modalSelectDiv">
+  <app-select-division></app-select-division>
+</div>
+<div class="modal fade" id="modalCA">
+  <app-crear-arbitro-modal [arbitro]="arbitro" (messageEvent) = "sendMessageInfo($event)"></app-crear-arbitro-modal>
+</div>
+<div class="modal fade" id="modalCD">
+  <app-crear-division-modal></app-crear-division-modal>
+</div>
+<div class="modal fade" id="modalVE">
+  <app-ver-equipos-modal ></app-ver-equipos-modal>
+</div>
+<div class="modal fade" id="myModal3">
+    <app-ver-jugadores-modal></app-ver-jugadores-modal>
+</div>
+<div class="modal fade" id="infoModal">
+  <app-informacion-modal mensaje="{{mensajeModal}}" (esperaEvent)="esperaChange($event)"></app-informacion-modal>
+</div>
+<div class="modal fade" id="modalCrearRep">
+  <app-crear-representante-modal (esperaEvent)="esperaChange($event)" [representante]="representante"></app-crear-representante-modal>
+</div>

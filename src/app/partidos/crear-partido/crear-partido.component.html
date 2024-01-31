@@ -1,18 +1,27 @@
+<div class="row" *ngIf="part.idpartido==0">
+  <div class="col-12 d-flex justify-content-end align-items-end">
+    <button class="btn btn-info bi bi-arrow-clockwise" (click)="ngOnInit()"></button>
+  </div>
+</div>
 <div class="row">
   <div class="col-2">
     <label for="local">Local</label>
   </div>
   <div class="col-4">
-    <select name="local" id="local" class="form-control">
-      <option value="atomicos">Atomicos</option>
+    <select name="local" id="local" class="form-control" [(ngModel)]="part.idlocal" (change)="comparaLV()" [disabled]="part.idpartido!=0">
+      <option value=0>Selecciona</option>
+      <option *ngFor="let eq of listaEqu" value={{eq.idequipo}}>{{eq.nombre}}</option>
     </select>
   </div>
   <div class="col-2">
     <label for="visitante">Visitante</label>
   </div>
   <div class="col-4">
-    <select name="visitante" id="visitante" class="form-control">
-      <option value="toluca">Toluca</option>
+    <select name="visitante" id="visitante" class="form-control" [(ngModel)]="part.idvisitante" [disabled]="part.idpartido!=0">
+      <option value=0>Selecciona</option>
+      <ng-container *ngFor="let eq of listaEqu" >
+        <option *ngIf="eq.idequipo!=part.idlocal" value={{eq.idequipo}}> {{eq.nombre}}</option>
+      </ng-container>
     </select>
   </div>
 </div>
@@ -21,13 +30,13 @@
     <label for="fecha">Fecha</label>
   </div>
   <div class="col-4">
-    <input type="date" name="fecha" id="fecha" class="form-control">
+    <input type="date" name="fecha" id="fecha" class="form-control" [(ngModel)]="part.fecha" [disabled]="part.cedula">
   </div>
   <div class="col-2">
     <label for="hora">Hora</label>
   </div>
   <div class="col-4">
-    <input type="time" name="hora" id="hora" class="form-control">
+    <input type="time" name="hora" id="hora" class="form-control" [(ngModel)]="part.hora" [disabled]="part.cedula">
   </div>
 </div>
 <div class="row mt-2">
@@ -35,16 +44,18 @@
     <label for="cancha">Cancha</label>
   </div>
   <div class="col-4">
-    <select name="cancha" id="cancha" class="form-control">
-      <option value="cancha">Cancha 1</option>
+    <select name="cancha" id="cancha" class="form-control" [(ngModel)]="part.cancha" [disabled]="part.cedula">
+      <option value=0>Selecciona</option>
+      <option value={{can.idcancha}} *ngFor="let can of listaCanchas">{{can.nombre}}</option>
     </select>
   </div>
   <div class="col-2">
     <label for="arbitro">Arbitro</label>
   </div>
   <div class="col-4">
-    <select name="arbitro" id="arbitro" class="form-control">
-      <option value="arbitro">Jose Luis Arbitro</option>
+    <select name="arbitro" id="arbitro" class="form-control" [(ngModel)]="part.idarbitro" [disabled]="part.cedula">
+      <option value=0>Selecciona</option>
+      <option value={{ar.idarbitro}} *ngFor="let ar of listaArb">{{ar.nombre}}</option>
     </select>
   </div>
 </div>
@@ -53,14 +64,28 @@
     <label for="jornada">Jornada</label>
   </div>
   <div class="col-4">
-    <select name="jornada" id="jornada" class="form-control">
-      <option value="jornada">J1</option>
-      <option value="jornada">J2</option>
+    <select name="jornada" id="jornada" class="form-control" [(ngModel)]="part.idjornada" [disabled]="part.idpartido!=0">
+      <option value=0>Selecciona</option>
+      <option value={{ar.idjornada}} *ngFor="let ar of listaJornada">{{ar.nombrejornada}}</option>
+    </select>
+  </div>
+  <div class="col-2">
+    <label for="tipoPartido">Tipo Partido</label>
+  </div>
+  <div class="col-4">
+    <select name="jornada" id="jornada" class="form-control" [(ngModel)]="part.idtipopartido" [disabled]="part.cedula">
+      <option value=0>Selecciona</option>
+      <option value={{ar.idtipo}} *ngFor="let ar of listaTipos">{{ar.tipo}}</option>
     </select>
   </div>
 </div>
-<div class="row mt-2">
+<div class="row" *ngIf="mensajeError!=''">
+  <div class="col-12">
+    <label for="" class="text-danger"><strong>{{mensajeError}}</strong></label>
+  </div>
+</div>
+<div class="row mt-4">
   <div class="col-10 d-flex justify-content-end">
-    <button class="btn btn-success">Guardar</button>
+    <button class="btn btn-success" (click)="save()" [disabled]="part.cedula">Guardar</button>
   </div>
 </div>

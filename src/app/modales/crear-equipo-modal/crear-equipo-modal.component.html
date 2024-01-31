@@ -10,7 +10,7 @@
 
     <!-- Modal body -->
     <div class="modal-body">
-      <app-crear-equipo></app-crear-equipo>
+      <app-crear-equipo [equipo]="equipo" (messageEvent) = "sendMessageInfo($event)" (esperaEvent)="esperaChange($event)"></app-crear-equipo>
     </div>
 
     <!-- Modal footer -->

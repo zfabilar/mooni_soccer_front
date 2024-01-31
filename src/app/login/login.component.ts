@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../core/services/login/login.service'
 import {login} from '../core/models/login.model'
+import { WPService } from '../core/services/whatsapp/wp.service';
 import { NavigationExtras, Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./login.component.css','./login.component_2.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private loginService : LoginService, public router: Router) { }
+  constructor(private loginService : LoginService, public router: Router,private wpServ:WPService) { }
   mensaje : string = ""
   usuario : string = "";
   pss : string = ""
@@ -18,14 +19,13 @@ export class LoginComponent implements OnInit {
   login(){
     this.espera = true
     this.loginService.logeaUsuario(this.usuario,this.pss).subscribe( (data : login) =>  {
-      console.log(data)
        if(data.autentica){
         localStorage.setItem('user', this.usuario);
         localStorage.setItem('id',data.idUsuario + "")
         localStorage.setItem('rol',data.rol)
         localStorage.setItem('sesion',data.idSesion+"")
         localStorage.setItem('idLiga',data.idLiga+"")
-
+        var sesion = (typeof localStorage.getItem("sesion") == null) ? '0':localStorage.getItem("sesion")?.valueOf()
         const navigationExtras: NavigationExtras = {
           queryParamsHandling: 'preserve',
           preserveFragment: true
@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
             redirectUrl = "/mi-equipo";
           break;
         }
-          console.log(redirectUrl)
          this.espera = false
          this.router.navigate([redirectUrl], navigationExtras);
        }else{

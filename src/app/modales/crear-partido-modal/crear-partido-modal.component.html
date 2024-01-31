@@ -3,13 +3,14 @@
 
     <!-- Modal Header -->
     <div class="modal-header">
-      <h4 class="modal-title">Editar Partido</h4>
+      <h4 class="modal-title" *ngIf="part.idpartido!=0">Editar Partido</h4>
+      <h4 class="modal-title" *ngIf="part.idpartido==0">Crear partido</h4>
       <button type="button" class="close" data-dismiss="modal">×</button>
     </div>
 
     <!-- Modal body -->
     <div class="modal-body">
-      <app-crear-partido></app-crear-partido>
+      <app-crear-partido [part]="part"  (esperaEvent)="esperaChange($event)" (cierraModalEv)="cerrarModal()"></app-crear-partido>
     </div>
 
     <!-- Modal footer -->

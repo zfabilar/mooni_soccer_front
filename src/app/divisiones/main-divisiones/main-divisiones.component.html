@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-12">
+    <h5>Divisiones</h5>
+  </div>
+</div>
+
+
+
+<div class="row w-100">
+  <div class="col-3">
+    <app-menu-divisiones class="position" (newItemEvent) = "cambiaOpc($event)"></app-menu-divisiones>
+  </div>
+  <div class="col-9">
+    <div class="container w-100" [ngSwitch]="menuOption">
+      <div class="row" *ngSwitchCase="'crear-division'">
+        <app-crear-division class="w-100"></app-crear-division>
+      </div>
+      <div class="row" *ngSwitchCase="'ver-divisiones'">
+        <app-ver-divisiones class="w-100"></app-ver-divisiones>
+      </div>
+    </div>
+  </div>
+</div>

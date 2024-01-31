@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-12">
+    <h1>Crear temporada</h1>
+  </div>
+  <div class="col-12">
+    <h3><strong>Nota: </strong>Crear una nueva temporada termina automaticamente la temporada actual</h3>
+  </div>
+</div>
+<div class="row form-group d-flex justify-content-start">
+  <div class="col-6">
+    <label for="nombre">Nombre</label><input type="text" name="nombre" id="" class="form-control" [(ngModel)]="nombre">
+  </div>
+</div>
+<div class="row form-group d-flex justify-content-center">
+  <div class="col-6">
+    <button class="w-50 btn btn-success" (click)="crearTemporada()">Crear</button>
+  </div>
+</div>

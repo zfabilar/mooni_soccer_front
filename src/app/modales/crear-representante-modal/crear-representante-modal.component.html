@@ -10,7 +10,7 @@
 
     <!-- Modal body -->
     <div class="modal-body">
-      <app-crear-representante></app-crear-representante>
+      <app-crear-representante (esperaEvent)="esperaChange($event)" [representante]="representante"></app-crear-representante>
     </div>
 
     <!-- Modal footer -->

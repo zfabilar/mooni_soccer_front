@@ -3,13 +3,22 @@
     <h5>Equipos</h5>
   </div>
 </div>
-<app-menu-equipo class="position" (newItemEvent) = "cambiaOpc($event)"></app-menu-equipo>
 
-<div class="container" [ngSwitch]="menuOption">
-  <div class="row" *ngSwitchCase="'crear-equipo'">
-    <app-crear-equipo class="w-100"></app-crear-equipo>
+<div class="row">
+  <div class="col-3">
+    <app-menu-equipo class="position" (newItemEvent) = "cambiaOpc($event)"></app-menu-equipo>
   </div>
-  <div class="row" *ngSwitchCase="'ver-equipos'">
-    <app-ver-equipos class="w-100"></app-ver-equipos>
+  <div class="col-9">
+    <div class="container" [ngSwitch]="menuOption">
+      <div class="row" *ngSwitchCase="'crear-equipo'">
+        <app-crear-equipo class="w-100" (esperaEvent)="esperaChange($event)"></app-crear-equipo>
+      </div>
+      <div class="row" *ngSwitchCase="'ver-equipos'">
+        <app-ver-equipos class="w-100" (teamEvent)="updateTeam($event)" (esperaEvent)="esperaChange($event)" [divisionFromMain]="division"></app-ver-equipos>
+      </div>
+    </div>
   </div>
+</div>
+<div class="modal fade" id="myModal4">
+  <app-crear-equipo-modal [equipo]="team" (messageEvent)="sendMessageInfo($event)" (esperaEvent)="esperaChange($event)"></app-crear-equipo-modal>
 </div>

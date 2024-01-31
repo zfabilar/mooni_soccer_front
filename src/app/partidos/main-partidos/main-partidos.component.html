@@ -13,11 +13,18 @@
   <div class="col-9">
     <div class="container w-100" [ngSwitch]="menuOption">
       <div class="row" *ngSwitchCase="'crear-partido'">
-        <app-crear-partido class="w-100"></app-crear-partido>
+        <app-crear-partido class="w-100" (esperaEvent)="esperaChange($event)" [divisionFromMain]="division"></app-crear-partido>
       </div>
       <div class="row" *ngSwitchCase="'ver-partidos'">
-        <app-ver-partidos class="w-100"></app-ver-partidos>
+        <app-ver-partidos class="w-100" (esperaEvent)="esperaChange($event)" (partidoEvent)="emitePartido($event)" [divisionFromMain]="division" [cerrarModalEv]="cerrarModalEv" (partidoTotalEvent)="emitePartidoTotal($event)"></app-ver-partidos>
       </div>
     </div>
   </div>
+</div>
+
+<div class="modal fade" id="modalCP">
+  <app-crear-partido-modal [part]="part" (cerrarModalEv)="cerrarModal($event)"></app-crear-partido-modal>
+</div>
+<div class="modal fade" id="modalCedula">
+  <app-cedula-modal [partTotal]="partTotal"></app-cedula-modal>
 </div>

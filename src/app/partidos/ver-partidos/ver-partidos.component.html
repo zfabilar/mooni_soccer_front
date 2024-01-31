@@ -2,11 +2,14 @@
   <div class="col-1">
     <label for="jornada">Jornada</label>
   </div>
-  <div class="col-11">
-    <select name="jornada" id="jornada" class="w-50 form-control">
-      <option value="jornada">J1</option>
-      <option value="jornada">J2</option>
+  <div class="col-5">
+    <select name="jornada" id="jornada" class="form-control" [(ngModel)]="idjornada" (change)="obtenerPartidos()">
+      <option value=0>Selecciona</option>
+      <option value={{ar.idjornada}} *ngFor="let ar of listaJornada">{{ar.nombrejornada}}</option>
     </select>
+  </div>
+  <div class="col-6 d-flex justify-content-end">
+    <button class="btn btn-dark w-50">Generar Rol</button>
   </div>
 </div>
 <div class="row mt-2">
@@ -17,48 +20,55 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" class="col-2">
+                    <th>
                       Local
                     </th>
-                    <th scope="col" class="col-2">
+                    <th>
                       Visitante
                     </th>
-                    <th scope="col" class="col-2">
+                    <th>
                       Fecha y Hora
                     </th>
-                    <th scope="col" class="col-2">
+                    <th>
+                      Tipo
+                    </th>
+                    <th>
                       Cancha
                     </th>
-                    <th scope="col" class="col-2">
+                    <th>
                       Arbitro
                     </th>
-                    <th scope="col" class="col-2">
+                    <th>
                       Acciones
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th class="col-2">Atomicos</th>
-                    <td class="col-2">Toluca</td>
-                    <td class="col-2">20/11/2023 20:30</td>
-                    <td class="col-2">Cancha 1</td>
-                    <td class="col-2">Un arbitro</td>
-                    <td class="col-3">
-                        <button class="btn btn-success bi bi-pencil-square border-0 h-100" data-toggle="modal" data-target="#modalCP"></button>
-                        <button class="btn btn-info bi bi-file-earmark-spreadsheet border-0" data-toggle="modal" data-target="#modalCedula"></button>
-                        <button class="btn btn-danger bi-trash3 border-0"></button>
+              <tr *ngIf="listaPartidos.length == 0 && idjornada!=0">
+                <td colspan="7">
+                  <strong class="text-danger">No hay partidos asignados a esta jornada</strong>
+                </td>
+              </tr>
+              <ng-container *ngFor="let par of listaPartidos">
+                  <tr *ngIf="par.local.iddivision == division">
+                    <td style="color: {{par.local.colorplayera}};"> <strong>{{par.local.nombre}}</strong></td>
+                    <td style="color: {{par.visitante.colorplayera}};"><strong>{{par.visitante.nombre}}</strong></td>
+                    <td >{{par.fecha}} {{par.hora}}</td>
+                    <td><label for="" *ngIf="par.idtipopartido==1">Liga</label><label for="" *ngIf="par.idtipopartido==2">Cuartos</label>
+                      <label for="" *ngIf="par.idtipopartido==3">Semifinal</label><label for="" *ngIf="par.idtipopartido==4">Final</label></td>
+                    <td >{{par.cancha.nombre}}</td>
+                    <td >{{par.arbitro.nombre}}</td>
+                    <td >
+                        <button class="btn btn-success bi bi-pencil-square border-0 h-100" data-toggle="modal" data-target="#modalCP" (click)="setPartido(par.idpartido)"></button>
+                        <button class="btn btn-info bi bi-file-earmark-spreadsheet border-0" data-toggle="modal" data-target="#modalCedula" (click)="setPartidoTotal(par)"></button>
+                        <button class="btn btn-danger bi-trash3 border-0" (click)="borraPartido(par.idpartido)"></button>
                     </td>
-                </tr>
+                  </tr>
+              </ng-container>
 
             </tbody>
         </table>
     </div>
 </div>
 </div>
-<div class="modal fade" id="modalCP">
-  <app-crear-partido-modal></app-crear-partido-modal>
-</div>
-<div class="modal fade" id="modalCedula">
-  <app-cedula-modal></app-cedula-modal>
-</div>
+

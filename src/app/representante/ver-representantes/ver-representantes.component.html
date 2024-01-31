@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-9">
+    <h3>Representantes</h3>
+  </div>
+  <div class="col-3">
+    <button value="crear" class="btn btn-secondary" data-toggle="modal" data-target="#modalCrearRep"> <label>Crear representante</label></button>
+  </div>
+</div>
+<div class="row mt-2">
+  <div class="col-12 table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-responsive">
+      <thead>
+        <th class="col-2">
+          Nombre
+        </th>
+        <th class="col-1">
+          Usuario
+        </th>
+        <th class="col-1">
+          Equipo
+        </th>
+        <th class="col-1">
+          Telefono
+        </th>
+        <th class="col-1">
+          Acciones
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rep of representantes">
+          <td>
+            {{rep.nombreCompleto}}
+          </td>
+          <td>
+            {{rep.nickname}}
+          </td>
+          <td>
+            {{rep.equipo==undefined?"Sin equipo":rep.equipo.nombre}}
+          </td>
+          <td>
+            {{rep.telefono}}
+          </td>
+          <td>
+            <button class="btn btn-success bi bi-pencil-square"  data-toggle="modal" data-target="#modalCrearRep" (click)="modalCA(rep.id)"></button>
+            <button class="btn btn-danger bi bi-clipboard-x" (click)="liberaRepresentanteDeEquipo(rep.id)"></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

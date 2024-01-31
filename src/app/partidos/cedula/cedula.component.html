@@ -1,1 +1,116 @@
-<p>cedula works!</p>
+<div class="row ">
+  <div class="col-1">
+    <label for="fecha"><strong>Fecha</strong></label>
+  </div>
+  <div class="col-3">
+    <label for="fechaValue">{{partTotal.fecha}} {{partTotal.hora}}</label>
+  </div>
+  <div class="col-1">
+    <label for="cancha"><strong>Cancha</strong></label>
+  </div>
+  <div class="col-2">
+    <label for="cancha">{{partTotal.cancha.nombre}}</label>
+  </div>
+  <div class="col-1">
+    <label for="arbitro"><strong>Arbitro</strong></label>
+  </div>
+  <div class="col-4">
+    <label for="arbitro">{{partTotal.arbitro.nombre}}</label>
+  </div>
+</div>
+<div class="row mt-2 border-top">
+  <div class="col-4 d-flex justify-content-center mt-2">
+    <label for="local">{{partTotal.local.nombre}}</label>
+  </div>
+  <div class="col-1 mt-2">
+    <input type="number" class="form-control" readonly [(ngModel)]="part.goleslocal">
+  </div>
+  <div class="col-2 d-flex justify-content-center mt-2">
+    <label for="vs"> <strong>VS</strong></label>
+  </div>
+  <div class="col-1 mt-2">
+    <input type="number" class="form-control" readonly [(ngModel)]="part.golesvisitante">
+  </div>
+  <div class="col-4 d-flex justify-content-center mt-2">
+    <label for="local">{{partTotal.visitante.nombre}}</label>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-5">
+    <table>
+      <thead>
+        <th class="col-1">
+          A
+        </th>
+        <th class="col-3">
+          Jugador
+        </th>
+        <th class="col-1">
+          Goles
+        </th>
+      </thead>
+      <tbody>
+        <tr class="col-5" *ngFor="let pl of jugGolAsisLocal">
+          <td class="col-1">
+            <input type="checkbox" name="asist" id="asist" [(ngModel)]="pl.asistio" (ngModelChange)="calculaGolesLocal()" [disabled]="part.cedula">
+          </td>
+          <td class="col-3">
+            {{pl.jug.nombrecompleto}}
+          </td>
+          <td class="col-2">
+            <input class="form-control" type="number" name="goles" id="goles" [disabled]="!pl.asistio || part.cedula" class="form-control w-50" [(ngModel)]="pl.goles" (ngModelChange)="calculaGolesLocal()" >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-2"></div>
+  <div class="col-5">
+    <table>
+      <thead>
+        <th class="col-1">
+          A
+        </th>
+        <th class="col-3">
+          Jugador
+        </th>
+        <th class="col-1">
+          Goles
+        </th>
+      </thead>
+      <tbody>
+        <tr class="col-5" *ngFor="let pl of jugGolAsisVisitante">
+          <td class="col-1">
+            <input type="checkbox" name="asist" id="asist" [(ngModel)]="pl.asistio" (ngModelChange)="calculaGolesVisitante()" [disabled]="part.cedula">
+          </td>
+          <td class="col-3">
+            {{pl.jug.nombrecompleto}}
+          </td>
+          <td class="col-2">
+            <input class="form-control" type="number" name="goles" id="goles" [disabled]="!pl.asistio  || part.cedula" class="form-control w-50" [(ngModel)]="pl.goles" (ngModelChange)="calculaGolesVisitante()">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row mt-3 border p-1" *ngIf="part.goleslocal == part.golesvisitante">
+  <div class="col-4">
+    <label for="">Goles shotout</label>
+  </div>
+  <div class="col-1">
+    <input type="number" name="gshloc" id="" class="form-control" [disabled]="part.cedula">
+  </div>
+  <div class="col-2"></div>
+  <div class="col-4">
+    <label for="">Goles shotout</label>
+  </div>
+  <div class="col-1">
+    <input type="number" name="gshvis" id="" class="form-control" [disabled]="part.cedula">
+  </div>
+</div>
+<div class="row mt-5" *ngIf="!part.cedula">
+  <div class="col-12 d-flex justify-content-end">
+    <button class="form-control btn btn-success" (click)="guardaCedula()">Guardar</button>
+  </div>
+</div>

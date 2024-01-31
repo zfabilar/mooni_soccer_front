@@ -1,24 +1,42 @@
-<div class="py-5">
-  <div class="row d-flex justify-content-center">
-    <div class="col-6">
-        <label for="nombreEquipo">Nombre del Equipo</label><input type="text" class="form-control w-50" >
+  <div class="row d-flex justify-content-start">
+    <div class="col-12">
+        <label for="nombreEquipo">Nombre del Equipo</label><input type="text" class="form-control"  [(ngModel)]="equipo.nombre" >
     </div>
   </div>
-  <div class="row d-flex justify-content-center">
-    <div class="col-3">
-      <label for="nombreEquipo">Color de playera</label><input type="color" class="form-control w-50" >
+  <div class="row d-flex justify-content-start">
+    <div class="col-6">
+      <label for="nombreEquipo">Color de playera</label><input type="color" class="form-control w-50" [(ngModel)]="equipo.colorplayera">
     </div>
-    <div class="col-3">
+    <div class="col-5">
       <label for="nombreEquipo">Representante</label>
-      <select [(ngModel)]="representante" id="division" class="form-control">
-        <option value="selecciona">Selecciona</option>
-        <!--<option class="btn " *ngFor="let division of divisiones.divisiones" value="{{division.iddivision}}">{{division.nombre}}</option>-->
-        <option value="crear" (click)="volverSeleccion('crear')"   data-toggle="modal" data-target="#modalCrearRep"> <label>Crear representante</label></option>
+      <select  id="division" class="form-control" [(ngModel)]="equipo.idrepresentante" [disabled]="equipo.idequipo!=0 && equipo.idequipo!=null">
+        <option value=0>Selecciona</option>
+        <option value={{rep.id}} *ngFor="let rep of representantes"  >{{rep.nombreCompleto}}</option>
+        <option value="crear" (click)="volverSeleccion('crear')"   data-toggle="modal" data-target="#modalCrearRep" > <label>Crear representante</label></option>
+      </select>
+    </div>
+    <div class="col-1  d-flex justify-content-left align-items-end">
+      <button class="btn btn-light bi bi-arrow-clockwise" (click)="obtieneRepresentantes()"></button>
+    </div>
+  </div>
+  <div class="row " *ngIf="equipo.idequipo!=0 && equipo.idequipo!=null">
+    <div class="col-6">
+      <label for="">
+        Division
+      </label>
+      <select class="form-control" name="" id="" [(ngModel)]="equipo.iddivision">
+        <option value=0>Selecciona</option>
+        <option value={{div.iddivision}} *ngFor="let div of divisiones">{{div.nombre}}</option>
       </select>
     </div>
   </div>
+  <div class="row d-flex justify-content-start">
+    <div class="col-12">
+      <label for="" *ngIf="mensaje!=''"><strong class="text-danger">{{mensaje}}</strong></label>
+    </div>
+  </div>
   <div class="row d-flex justify-content-center mt-1">
-    <div class="col-3 d-flex justify-content-left">
+    <div class="col-5 d-flex justify-content-left table-wrapper-scroll-y my-custom-scrollbar">
       <table class="table table-responsive">
         <thead>
           <tr>
@@ -28,25 +46,27 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              Jugador
+          <tr *ngFor="let jl of jugadoresLibres" id="Jug{{jl.idjugador}}">
+            <td (click)="jugadorAMover(jl)">
+              {{jl.nombrecompleto}}
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="col-1 d-flex justify-content-center">
-      <div class="row">
+    <div class="col-2">
+      <div class="row mt-3 h-50">
         <div class="col d-flex align-items-end">
-          <button class="btn btn-info bi bi-arrow-bar-right"></button>
+          <button class="btn btn-info bi bi-arrow-bar-right" (click)="moveToTeam()" *ngIf="jugadoresLibres.length>0"></button>
         </div>
+      </div>
+      <div class="row">
         <div class="col d-flex align-items-start">
-          <button class="btn btn-danger bi-arrow-bar-left"></button>
+          <button class="btn btn-danger bi-arrow-bar-left" (click)="movetoFree()" *ngIf="jugadoresEnEquipo.length>0"></button>
         </div>
       </div>
     </div>
-    <div class="col-2 d-flex justify-content-right ">
+    <div class="col-5 d-flex justify-content-right table-wrapper-scroll-y my-custom-scrollbar">
       <table class="table table-responsive">
         <thead>
           <tr>
@@ -56,14 +76,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              Jugador
+          <tr *ngFor="let jl of jugadoresEnEquipo" id="RevJug{{jl.idjugador}}">
+            <td (click)="jugadorARegresar(jl)">
+              {{jl.nombrecompleto}}
             </td>
           </tr>
           <tr>
             <td class="d-flex justify-content-center">
-              <button class="btn btn-success bi-person-plus-fill " data-toggle="modal" data-target="#modalCrearJug"></button>
+              <button class="btn btn-success bi-person-plus-fill " data-toggle="modal" data-target="#modalCrearJug" (click)="agregarJugador()"></button>
             </td>
           </tr>
         </tbody>
@@ -72,13 +92,11 @@
   </div>
   <div class="row d-flex justify-content-center mt-4">
     <div class="col-6 d-flex flex-row-reverse">
-      <input type="button" value="Guardar" class="btn btn-success" (click)="guardar()">
+      <input type="button" value="Guardar" class="btn btn-success" (click)="createUpdaTeam()">
     </div>
   </div>
-</div>
-<div class="modal fade" id="modalCrearRep">
-  <app-crear-representante-modal></app-crear-representante-modal>
-</div>
+
+
 <div class="modal fade" id="modalCrearJug">
-  <app-crear-jugador-modal></app-crear-jugador-modal>
+  <app-crear-jugador-modal (cerrarModalEv)="listasJugadores()" [idTeam]="equipo.idequipo"></app-crear-jugador-modal>
 </div>

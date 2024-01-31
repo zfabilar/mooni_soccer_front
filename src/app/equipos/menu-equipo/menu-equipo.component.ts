@@ -6,6 +6,10 @@ import { Component, OnInit ,Output,EventEmitter} from '@angular/core';
 })
 export class MenuEquipoComponent implements OnInit {
   @Output()  newItemEvent = new EventEmitter<string>();
+  @Output() esperaEvent = new EventEmitter<boolean>();
+  esperaChange(msj:boolean){
+    this.esperaEvent.emit(msj)
+  }
   constructor() { }
 
   ngOnInit(): void {

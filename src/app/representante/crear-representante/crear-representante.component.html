@@ -1,11 +1,25 @@
 
         <div class="row form-group d-flex justify-content-center">
           <div class="col-6">
-            <label for="nombre">Nombre</label><input type="text" name="nombre" id="" class="form-control">
+            <label for="nombre">Nombre</label><input type="text" name="nombre" id="" class="form-control" [(ngModel)]="representante.nombreCompleto" [disabled]="representante.id !=0">
           </div>
         </div>
         <div class="row form-group d-flex justify-content-center">
           <div class="col-6">
-            <label for="nombre">Telefono</label><input type="text" name="nombre" id="" class="form-control">
+            <label for="nombre">Telefono</label><input type="text" name="nombre" id="" class="form-control" [(ngModel)]="representante.telefono">
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="" class="text-danger" *ngIf="!exito"><strong>{{mensaje}}</strong></label>
+        </div>
+        <div class="col-12" *ngIf="exitoCrear">
+          <label for="" class="text-info"><strong>Importante!!:</strong> Favor de compartir a su representante las siguientes credenciales para acceder al sistema</label>
+
+          <strong>User: </strong>{{usr}} <strong>Contraseña:</strong> {{pwd}}
+          <button class="btn btn-info" (click)="vacia()">Entendido</button>
+        </div>
+        <div class="row form-group d-flex justify-content-center" *ngIf="!exitoCrear">
+          <div class="col-6">
+            <button class="w-50 btn btn-success" (click)="SaveUpdRep()">Guardar</button>
           </div>
         </div>

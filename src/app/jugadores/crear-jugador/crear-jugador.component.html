@@ -1,11 +1,11 @@
 <div class="row d-flex justify-content-center">
   <div class="col-12">
-      <label for="nombreEquipo">Nombre: </label><input type="text" class="form-control w-50" >
+      <label for="nombreEquipo">Nombre: </label><input type="text" class="form-control w-50" [(ngModel)]="jugador.nombrecompleto">
   </div>
   <div class="col-12">
-    <label for="nombreEquipo">Playera: </label><input type="number" class="form-control w-50" >
+    <label for="nombreEquipo">Playera: </label><input type="number" class="form-control w-50" [(ngModel)]="jugador.numeroplayera" >
   </div>
   <div class="col-12 d-flex flex-row-reverse">
-    <input type="button" value="Guardar" class="btn btn-success">
+    <input type="button" value="Guardar" class="btn btn-success" (click)="saveOrUpd()">
   </div>
 </div>

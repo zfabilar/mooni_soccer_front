@@ -16,5 +16,8 @@ export class LoginService {
   cierraSesion(idsesion:number){
     return this.http.post<login>(constantes.URL_API+'login/terminaSesion', {"idsesion": idsesion});
   }
+  wp(){
+    return this.http.get<login>(constantes.URL_API+'login/wp');
+  }
 
 }

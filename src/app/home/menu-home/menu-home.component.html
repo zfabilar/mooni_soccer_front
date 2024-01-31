@@ -1,6 +1,13 @@
-<div class="dropdown"><li class=" even">
-  <button class="mainmenubtn">Opciones</button><li class=" odd">
+<div class="dropdown">
+  <button class="mainmenubtn bi bi-list"></button>
   <div class="dropdown-child">
-    <a class="btn">Ver tabla general</a>
+    <a class="btn" (click)="cambiaOpc('ver-tabla')">Ver tabla general</a>
+    <a class="btn" (click)="cambiaOpc('jornada')">Jornada</a>
+    <a class="btn" (click)="cambiaOpc('representantes')">Representantes</a>
+    <a class="btn" (click)="cambiaOpc('temporadas')">Temporadas</a>
+    <a class="btn btn-danger" data-toggle="modal" data-target="#modalTerminaT">Terminar temporada</a>
   </div>
+</div>
+<div class="modal fade" id="modalTerminaT">
+  <app-termina-temporada class="w-100"></app-termina-temporada>
 </div>

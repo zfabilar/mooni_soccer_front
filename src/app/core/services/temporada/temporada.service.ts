@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http/'
 import { Temporada } from '../../models/temporada.model';
-import {constantes} from '../../constantes'
+import {constantes} from '../../constantes';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +15,14 @@ export class TemporadaService {
       "idsesion":idsesion
     }
   );
+  }
+  crearTemporada(idliga:number,nombre:string,idsesion:number){
+    return this.http.post<Temporada>(constantes.URL_API+'temporada/',{
+      "idliga" : idliga,
+      "idsesion":idsesion,
+      "nombre": nombre
+    }
+    );
   }
 
 
